@@ -16,7 +16,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
-public class GUI_WB implements ActionListener{
+public class GUI_WB implements ActionListener {
 
 	JFrame frmRess;
 	private JTextField textField;
@@ -34,6 +34,9 @@ public class GUI_WB implements ActionListener{
 	private String[] columnNames = {"Rule", "Support", "Confidence", "Lift"};
 	private JCheckBox checkBox_1;
 	private JCheckBox checkBox_2;
+	private JButton btnAnaliziraj;
+	
+	private String data_path;
 
 	/**
 	 * Create the application.
@@ -54,9 +57,27 @@ public class GUI_WB implements ActionListener{
 		if (e.getSource() == btnPotrai) {
 			dl = new DataLoader();
 			
+			data_path = dl.odabir_datoteke();
+					
+			textField.setText(data_path);
+			//System.out.println(data_path);
 		}
-		textField.setText(dl.odabir_datoteke());
-		//System.out.println(dl.odabir_datoteke());
+		
+		if (e.getSource() == btnAnaliziraj) {
+			
+			//System.out.println("USO SAM");
+			
+			DataMiner dm = new DataMiner(this.data_path);
+			
+			try {
+				
+				dm.analiziraj();
+				
+			} catch (Exception excp) {
+				
+				System.out.println(excp);
+			}
+		}
 	}
 	
 	private void initialize() {
@@ -123,9 +144,9 @@ public class GUI_WB implements ActionListener{
 		//table = new JTable()
 		table = new JTable(0, 4);
 		
-		table.getColumnModel().getColumn(0).setHeaderValue("Rule");
-		//table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		table.getColumnModel().getColumn(0).setPreferredWidth(500);
 		
+		table.getColumnModel().getColumn(0).setHeaderValue("Rule");
 		table.getColumnModel().getColumn(1).setHeaderValue("Support");
 		table.getColumnModel().getColumn(2).setHeaderValue("Confidence");
 		table.getColumnModel().getColumn(3).setHeaderValue("Lift");
@@ -141,6 +162,12 @@ public class GUI_WB implements ActionListener{
 		checkBox_2 = new JCheckBox("New check box");
 		checkBox_2.setBounds(24, 300, 208, 23);
 		desktopPane.add(checkBox_2);
+		
+		btnAnaliziraj = new JButton("Analiziraj");
+		btnAnaliziraj.setBounds(74, 331, 117, 25);
+		desktopPane.add(btnAnaliziraj);
+		
+		btnAnaliziraj.addActionListener(this);
 		
 	}
 }

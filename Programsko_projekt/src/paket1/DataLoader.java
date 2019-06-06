@@ -19,7 +19,6 @@ public class DataLoader {
 		
 		File selectedFile = null;
 		int returnValue = this.jfc.showOpenDialog(null);
-		//int returnValue = jfc.showSaveDialog(null);
 
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			
