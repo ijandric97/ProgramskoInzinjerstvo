@@ -9,8 +9,6 @@ public class DataLoader {
 	
 	private JFileChooser jfc;
 	
-	private String indices;
-	
 	public DataLoader() {
 		
 	}

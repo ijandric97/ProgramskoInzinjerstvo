@@ -30,8 +30,7 @@ public class GUI_WB implements ActionListener {
 	private JCheckBox chckbxNewCheckBox_5;
 	private JCheckBox chckbxNewCheckBox_6;
 	private JTable table;
-	
-	private String[] columnNames = {"Rule", "Support", "Confidence", "Lift"};
+
 	private JCheckBox chckbxNista;
 	private JCheckBox chckbxNista_1;
 	private JButton btnAnaliziraj;
@@ -146,8 +145,6 @@ public class GUI_WB implements ActionListener {
 		else if (e.getSource() == btnAnaliziraj) {
 			
 			//System.out.println("USO SAM");
-			
-			DataLoader indices = new DataLoader();
 			
 			DataMiner dm = new DataMiner(this.data_path, this.getIndices());
 			

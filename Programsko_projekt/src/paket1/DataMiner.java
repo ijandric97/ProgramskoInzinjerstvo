@@ -30,6 +30,8 @@ public class DataMiner {
 			data = this.NumericToNominal(data);		//poziv metode za pretvorbu iz numeric u nominal
 			data = this.selection(data);			//poziv metode za filtriranje
 			
+			//System.out.println(data);
+			
 		} catch (Exception e) {
 			
 			System.out.println(e);
@@ -61,7 +63,7 @@ public class DataMiner {
 		return filterData;
 	}
 	
-	public Instances selection (Instances rawData) throws Exception {	//filtriranje željenih atributa
+	public Instances selection(Instances rawData) throws Exception {	//filtriranje željenih atributa
 		
 		Instances data = rawData;
 		
