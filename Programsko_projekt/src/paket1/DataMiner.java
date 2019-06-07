@@ -23,12 +23,21 @@ public class DataMiner {
 	
 	public void analiziraj() throws Exception {
 		
+		System.out.println("ulazim u ANAlizu heheeeee");
+		
 		Instances data = new Instances(new BufferedReader(new FileReader(data_path)));
 		
 		try {
 			
-			data = this.NumericToNominal(data);		//poziv metode za pretvorbu iz numeric u nominal
+			System.out.println("KRECEM");
+			
+			//data = this.NumericToNominal(data);		//poziv metode za pretvorbu iz numeric u nominal
+			
+			//System.out.println("NumericToNominal rjeseno");
+			
 			data = this.selection(data);			//poziv metode za filtriranje
+			
+			System.out.println("selection rjesen");
 			
 			//System.out.println(data);
 			
@@ -41,7 +50,11 @@ public class DataMiner {
 		
 		Apriori model = new Apriori();
 		
+		System.out.println("Krecem sa asocijacijama");
+		
 		model.buildAssociations(data);
+		
+		System.out.println("Gotovo!");
 		
 		System.out.println(model);
 	}
