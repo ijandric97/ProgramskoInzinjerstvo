@@ -9,13 +9,15 @@ public class DataLoader {
 	
 	private JFileChooser jfc;
 	
+	private String indices;
+	
 	public DataLoader() {
-		
-		jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 		
 	}
 	
 	public String odabir_datoteke() {
+		
+		jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 		
 		File selectedFile = null;
 		int returnValue = this.jfc.showOpenDialog(null);
@@ -27,4 +29,6 @@ public class DataLoader {
 		
 		return selectedFile.getAbsolutePath();
 	}
+	
+	//public String getIndices() {}
 }
