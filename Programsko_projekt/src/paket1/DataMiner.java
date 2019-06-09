@@ -2,6 +2,7 @@ package paket1;
 
 import weka.core.Instances;
 import weka.filters.*;
+import weka.filters.unsupervised.attribute.Discretize;
 import weka.filters.unsupervised.attribute.NumericToNominal;
 import weka.filters.unsupervised.attribute.Remove;
 
@@ -9,7 +10,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import weka.associations.Apriori;
 
-public class DataMiner extends Apriori{
+public class DataMiner extends Apriori {
 	
 	private String data_path;
 	private String indices;
@@ -27,7 +28,8 @@ public class DataMiner extends Apriori{
 		
 		try {
 			
-			data = this.NumericToNominal(data);		//poziv metode za pretvorbu iz numeric u nominal
+			//data = this.NumericToNominal(data);		//poziv metode za pretvorbu iz numeric u nominal
+			data = this.Discretize(data);
 			data = this.selection(data);			//poziv metode za filtriranje
 			
 			//System.out.println(data);
@@ -55,12 +57,38 @@ public class DataMiner extends Apriori{
 		options[0] = "-R";
 		options[1] = "2, 3, 4, 12, 13, 14";		//redni brojevi stupaca koji su numeric
 		
-		convert.setOptions(options);
-		convert.setInputFormat(dataProcessed);
+		try {           
+	    	convert.setOptions(options);
+			convert.setInputFormat(dataProcessed);
+			
+	        Instances filterData = Filter.useFilter(dataProcessed, convert);
+	        
+	        return filterData;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	
+	public Instances Discretize(Instances dataProcessed) throws Exception {
+	    Discretize convert = new Discretize();
+	    
+	    String[] options = new String[2];
+	    
+	    options[0] = "-R";
+		options[1] = "2, 3, 4, 12, 13, 14";		//redni brojevi stupaca koji su numeric
 		
-		Instances filterData = Filter.useFilter(dataProcessed, convert);
-		
-		return filterData;
+	    try {           
+	    	convert.setOptions(options);
+			convert.setInputFormat(dataProcessed);
+			
+	        Instances filterData = Filter.useFilter(dataProcessed, convert);
+	        
+	        return filterData;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
 	}
 	
 	public Instances selection(Instances rawData) throws Exception {	//filtriranje željenih atributa
