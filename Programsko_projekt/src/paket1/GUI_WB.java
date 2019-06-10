@@ -221,7 +221,7 @@ public class GUI_WB implements ActionListener {
 	private void initialize() {
 		frmRess = new JFrame();
 		frmRess.setTitle("RESS");
-		frmRess.setBounds(100, 100, 1024, 600);
+		frmRess.setBounds(100, 100, 1450, 600);
 		frmRess.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRess.getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
 		
@@ -276,7 +276,7 @@ public class GUI_WB implements ActionListener {
 		desktopPane.add(chckbxNewCheckBox_6);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(281, 64, 731, 323);
+		scrollPane.setBounds(281, 64, 1150, 323);
 		desktopPane.add(scrollPane);
 		
 		table = new JTable(0, 4);
