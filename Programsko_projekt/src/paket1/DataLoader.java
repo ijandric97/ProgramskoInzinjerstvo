@@ -27,6 +27,4 @@ public class DataLoader {
 		
 		return selectedFile.getAbsolutePath();
 	}
-	
-	//public String getIndices() {}
 }
